@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2pccmqikm6vq"
-path="res://.godot/imported/Unkown perils and darkness.png-874d98c69aa1bca90cc7cc000af1fd42.ctex"
+uid="uid://ds5nelc187egc"
+path="res://.godot/imported/tile set 1.png-9c48e6dd4148c8f43b6b6297dfc2644e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Unkown perils and darkness.png"
-dest_files=["res://.godot/imported/Unkown perils and darkness.png-874d98c69aa1bca90cc7cc000af1fd42.ctex"]
+source_file="res://assets/tile set 1.png"
+dest_files=["res://.godot/imported/tile set 1.png-9c48e6dd4148c8f43b6b6297dfc2644e.ctex"]
 
 [params]
 

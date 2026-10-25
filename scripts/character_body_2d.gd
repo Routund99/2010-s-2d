@@ -1,11 +1,16 @@
 extends CharacterBody2D
 
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
+@onready var animated_sprite_2d: AnimatedSprite2D = $stickguy
+const SPEED = 200.0
+const JUMP_VELOCITY = -300.0
 
 func _physics_process(delta: float) -> void:
+	# Add Animation
+	if velocity.x > 1 or velocity.x < -1:
+		animated_sprite_2d.play("running")
+	else:
+		animated_sprite_2d.play("idle")
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -19,6 +24,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("Left", "Right")
 	if direction:
 		velocity.x = direction * SPEED
+		animated_sprite_2d.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
