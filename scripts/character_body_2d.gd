@@ -4,6 +4,12 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 
+var spawn_point: Vector2   # NEW
+var deaths := 0            # NEW
+
+func _ready() -> void:     # NEW
+	spawn_point = global_position
+
 func _physics_process(delta: float) -> void:
 	# Add Animation
 	if velocity.x > 1 or velocity.x < -1:
@@ -20,7 +26,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("Left", "Right")
 	if direction:
 		velocity.x = direction * SPEED
@@ -29,3 +34,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+	# NEW: check what we touched this frame
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collision.get_collider().is_in_group("damage"):
+			die()
+			break
+
+func die() -> void:        # NEW
+	deaths += 1
+	global_position = spawn_point
+	velocity = Vector2.ZERO
