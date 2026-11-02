@@ -2,9 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cal0tntiqcfa" path="res://scripts/character_body_2d.gd" id="1_4vge2"]
 [ext_resource type="Texture2D" uid="uid://hn6yult4gn2x" path="res://sprites/animations/stick guy-Sheet.png" id="2_04qyp"]
+[ext_resource type="Texture2D" uid="uid://8x11teksgwhu" path="res://sprites/stick guy jump-Sheet.png" id="2_j7wrs"]
 [ext_resource type="Texture2D" uid="uid://dq5ipgm0hdcrd" path="res://sprites/animations/stick guy running-Sheet.png" id="3_04qyp"]
 [ext_resource type="Texture2D" uid="uid://ds5nelc187egc" path="res://assets/tile set 1.png" id="4_4vge2"]
 [ext_resource type="Texture2D" uid="uid://cacwdvuq8ieav" path="res://assets/spike.png" id="5_04qyp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q20i"]
+atlas = ExtResource("2_j7wrs")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv8l0"]
+atlas = ExtResource("2_j7wrs")
+region = Rect2(64, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hh0fu"]
 atlas = ExtResource("2_04qyp")
@@ -28,6 +37,26 @@ region = Rect2(64, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hsdmi"]
 atlas = ExtResource("2_04qyp")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coh8c"]
+atlas = ExtResource("2_j7wrs")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmyi7"]
+atlas = ExtResource("2_j7wrs")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey6mn"]
+atlas = ExtResource("2_j7wrs")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sxpt"]
+atlas = ExtResource("2_j7wrs")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pblkq"]
+atlas = ExtResource("2_j7wrs")
 region = Rect2(80, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7wrs"]
@@ -57,6 +86,17 @@ region = Rect2(80, 0, 16, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_n3l10"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q20i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv8l0")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 6.0
+}, {
+"frames": [{
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_hh0fu")
 }, {
@@ -78,6 +118,26 @@ animations = [{
 "loop": 1,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coh8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmyi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey6mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sxpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pblkq")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -183,7 +243,7 @@ script = ExtResource("1_4vge2")
 [node name="stickguy" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=247294009]
 position = Vector2(235, 153)
 sprite_frames = SubResource("SpriteFrames_n3l10")
-animation = &"running"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1643429672]
@@ -198,10 +258,12 @@ position_smoothing_speed = 10.235
 
 [node name="base layer" type="TileMapLayer" parent="." unique_id=1756856615]
 position = Vector2(1, 2)
-tile_map_data = PackedByteArray("AAAAABoAAAAAAAAAAAABABoAAAABAAAAAAACABoAAAABAAAAAAADABoAAAABAAAAAAAEABoAAAABAAAAAAAFABoAAAABAAAAAAAGABoAAAABAAAAAAAHABoAAAABAAAAAAAIABoAAAABAAAAAAAJABoAAAABAAAAAAAKABoAAAABAAAAAAALABoAAAABAAAAAAAMABoAAAABAAAAAAANABoAAAABAAAAAAAOABoAAAABAAAAAAAPABoAAAABAAAAAAAQABoAAAABAAAAAAARABoAAAABAAAAAAASABoAAAABAAAAAAATABoAAAABAAAAAAAUABoAAAABAAAAAAAVABoAAAABAAAAAAAWABoAAAABAAAAAAAXABoAAAABAAAAAAAYABoAAAABAAAAAAAZABoAAAABAAAAAAAaABoAAAACAAAAAAABABsAAAABAAEAAAAZABsAAAABAAEAAAAYABsAAAABAAEAAAAXABsAAAABAAEAAAAWABsAAAABAAEAAAAVABsAAAABAAEAAAAUABsAAAABAAEAAAATABsAAAABAAEAAAASABsAAAABAAEAAAARABsAAAABAAEAAAAQABsAAAABAAEAAAAPABsAAAABAAEAAAAOABsAAAABAAEAAAANABsAAAABAAEAAAAMABsAAAABAAEAAAALABsAAAABAAEAAAAKABsAAAABAAEAAAAJABsAAAABAAEAAAAIABsAAAABAAEAAAAHABsAAAABAAEAAAAGABsAAAABAAEAAAAFABsAAAABAAEAAAAEABsAAAABAAEAAAADABsAAAABAAEAAAACABsAAAABAAEAAAABABwAAAABAAIAAAACABwAAAABAAIAAAADABwAAAABAAIAAAAEABwAAAABAAIAAAAFABwAAAABAAIAAAAGABwAAAABAAIAAAAHABwAAAABAAIAAAAIABwAAAABAAIAAAAJABwAAAABAAIAAAAKABwAAAABAAIAAAALABwAAAABAAIAAAAMABwAAAABAAIAAAANABwAAAABAAIAAAAOABwAAAABAAIAAAAPABwAAAABAAIAAAAQABwAAAABAAIAAAARABwAAAABAAIAAAASABwAAAABAAIAAAATABwAAAABAAIAAAAUABwAAAABAAIAAAAVABwAAAABAAIAAAAWABwAAAABAAIAAAAXABwAAAABAAIAAAAYABwAAAABAAIAAAAZABwAAAABAAIAAAAaABwAAAACAAIAAAAAABwAAAAAAAIAAAAAABsAAAAAAAEAAAAaABsAAAACAAEAAAAGABgAAAADAAMAAAAJABgAAAADAAMAAAAMABcAAAAAAAMAAAANABcAAAABAAMAAAAOABcAAAABAAMAAAAPABcAAAABAAMAAAAQABcAAAABAAMAAAARABcAAAACAAMAAAAXABgAAAADAAMAAAA=")
+tile_map_data = PackedByteArray("AAAAABoAAAAAAAAAAAABABoAAAABAAAAAAACABoAAAABAAAAAAADABoAAAABAAAAAAAEABoAAAABAAAAAAAFABoAAAABAAAAAAAGABoAAAABAAAAAAAHABoAAAABAAAAAAAIABoAAAABAAAAAAAJABoAAAABAAAAAAAKABoAAAABAAAAAAALABoAAAABAAAAAAAMABoAAAABAAAAAAANABoAAAABAAAAAAAOABoAAAABAAAAAAAPABoAAAABAAAAAAAQABoAAAABAAAAAAARABoAAAABAAAAAAASABoAAAABAAAAAAATABoAAAABAAAAAAAUABoAAAABAAAAAAAVABoAAAABAAAAAAAWABoAAAABAAAAAAAXABoAAAABAAAAAAAYABoAAAABAAAAAAAZABoAAAABAAAAAAAaABoAAAACAAAAAAABABsAAAABAAEAAAAZABsAAAABAAEAAAAYABsAAAABAAEAAAAXABsAAAABAAEAAAAWABsAAAABAAEAAAAVABsAAAABAAEAAAAUABsAAAABAAEAAAATABsAAAABAAEAAAASABsAAAABAAEAAAARABsAAAABAAEAAAAQABsAAAABAAEAAAAPABsAAAABAAEAAAAOABsAAAABAAEAAAANABsAAAABAAEAAAAMABsAAAABAAEAAAALABsAAAABAAEAAAAKABsAAAABAAEAAAAJABsAAAABAAEAAAAIABsAAAABAAEAAAAHABsAAAABAAEAAAAGABsAAAABAAEAAAAFABsAAAABAAEAAAAEABsAAAABAAEAAAADABsAAAABAAEAAAACABsAAAABAAEAAAABABwAAAABAAIAAAACABwAAAABAAIAAAADABwAAAABAAIAAAAEABwAAAABAAIAAAAFABwAAAABAAIAAAAGABwAAAABAAIAAAAHABwAAAABAAIAAAAIABwAAAABAAIAAAAJABwAAAABAAIAAAAKABwAAAABAAIAAAALABwAAAABAAIAAAAMABwAAAABAAIAAAANABwAAAABAAIAAAAOABwAAAABAAIAAAAPABwAAAABAAIAAAAQABwAAAABAAIAAAARABwAAAABAAIAAAASABwAAAABAAIAAAATABwAAAABAAIAAAAUABwAAAABAAIAAAAVABwAAAABAAIAAAAWABwAAAABAAIAAAAXABwAAAABAAIAAAAYABwAAAABAAIAAAAZABwAAAABAAIAAAAaABwAAAACAAIAAAAAABwAAAAAAAIAAAAAABsAAAAAAAEAAAAaABsAAAACAAEAAAAGABgAAAADAAMAAAAJABgAAAADAAMAAAAMABcAAAAAAAMAAAANABcAAAABAAMAAAAOABcAAAABAAMAAAAPABcAAAABAAMAAAAQABcAAAABAAMAAAARABcAAAACAAMAAAA=")
 tile_set = SubResource("TileSet_n3l10")
 
 [node name="traps" type="TileMapLayer" parent="." unique_id=963962991 groups=["damage"]]
 position = Vector2(1, 2)
-tile_map_data = PackedByteArray("AAAUABkAAAAAAAAAAAAVABkAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAVABkAAAAAAAAAAAAWABkAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_rppm1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=769623920]

@@ -11,12 +11,16 @@ func _ready() -> void:     # NEW
 	spawn_point = global_position
 
 func _physics_process(delta: float) -> void:
-	# Add Animation
-	if velocity.x > 1 or velocity.x < -1:
+	# Animation
+	if not is_on_floor():
+		if velocity.y < 0:
+			animated_sprite_2d.play("jump")
+		else:
+			animated_sprite_2d.play("fall")
+	elif velocity.x > 1 or velocity.x < -1:
 		animated_sprite_2d.play("running")
 	else:
 		animated_sprite_2d.play("idle")
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
